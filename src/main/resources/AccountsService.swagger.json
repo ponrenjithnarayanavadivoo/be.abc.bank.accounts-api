@@ -1,0 +1,342 @@
+{
+	"swagger": "2.0",
+	"info": {
+		"description": "This service is used to manage the accounts of the ABC Bank customer",
+		"version": "1.0.0",
+		"title": "Account Service API"
+	},
+	"host": "be.abc.bank.accounts.service",
+	"basePath": "/accounts/v1",
+	"schemes": [
+		"http"
+	],
+	"paths": {
+		"/customer-detail/{customerId}": {
+			"get": {
+				"tags": [
+					"customerDetail"
+				],
+				"summary": "Find customer details by ID",
+				"description": "Get the customer detail",
+				"operationId": "getCustomerDetails",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"$ref": "#/parameters/Api-Key"
+					},
+					{
+						"$ref": "#/parameters/Request-ID"
+					},
+					{
+						"$ref": "#/parameters/Accept"
+					},
+					{
+						"$ref": "#/parameters/Api-Version"
+					},
+					{
+						"$ref": "#/parameters/Client-TimeStamp"
+					},
+					{
+						"name": "customerId",
+						"in": "path",
+						"description": "customer account inforamation needs to be fetched",
+						"required": true,
+						"type": "integer",
+						"format": "int32"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "successful operation",
+						"schema": {
+							"$ref": "#/definitions/CustomerInfo"
+						}
+					},
+					"404": {
+						"description": "customerId not found"
+					},
+					"400": {
+						"description": "Invalid customer ID supplied"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/create-account": {
+			"post": {
+				"tags": [
+					"createAccount"
+				],
+				"description": "A new account will be created for the provided customer Id",
+				"operationId": "createAccount",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"$ref": "#/parameters/Api-Key"
+					},
+					{
+						"$ref": "#/parameters/Request-ID"
+					},
+					{
+						"$ref": "#/parameters/Accept"
+					},
+					{
+						"$ref": "#/parameters/Api-Version"
+					},
+					{
+						"$ref": "#/parameters/Client-TimeStamp"
+					},
+					{
+						"in": "body",
+						"name": "CustomerRequestInfo",
+						"description": "customer information",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/CustomerRequestInfo"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Customer new account created successfully"
+					},
+					"405": {
+						"description": "Invalid input"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/update-account/{accountId}": {
+			"put": {
+				"tags": [
+					"updateAccount"
+				],
+				"description": "A new account will be updated for the provided customer Id",
+				"operationId": "updateAccount",
+				"consumes": [
+					"application/json"
+				],
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"$ref": "#/parameters/Api-Key"
+					},
+					{
+						"$ref": "#/parameters/Request-ID"
+					},
+					{
+						"$ref": "#/parameters/Accept"
+					},
+					{
+						"$ref": "#/parameters/Api-Version"
+					},
+					{
+						"$ref": "#/parameters/Client-TimeStamp"
+					},
+					{
+						"$ref": "#/parameters/accountId"
+					},
+					{
+						"in": "body",
+						"name": "CustomerRequestInfo",
+						"description": "customer information",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/CustomerRequestInfo"
+						}
+					}
+				],
+				"responses": {
+					"204": {
+						"description": "Customer account updated successfully"
+					},
+					"405": {
+						"description": "Invalid input"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		},
+		"/account-detail/{customerId}": {
+			"get": {
+				"tags": [
+					"accountDetail"
+				],
+				"summary": "Find pet by ID",
+				"description": "Get the customer detail",
+				"operationId": "getAccountDetails",
+				"produces": [
+					"application/json"
+				],
+				"parameters": [
+					{
+						"$ref": "#/parameters/Api-Key"
+					},
+					{
+						"$ref": "#/parameters/Request-ID"
+					},
+					{
+						"$ref": "#/parameters/Accept"
+					},
+					{
+						"$ref": "#/parameters/Api-Version"
+					},
+					{
+						"$ref": "#/parameters/Client-TimeStamp"
+					},
+					{
+						"$ref": "#/parameters/customerId"
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "successful operation",
+						"schema": {
+							"$ref": "#/definitions/AccountDetailsInfo"
+						}
+					},
+					"404": {
+						"description": "customerId not found"
+					},
+					"400": {
+						"description": "Invalid customer ID supplied"
+					},
+					"500": {
+						"description": "Internal Server Error"
+					}
+				}
+			}
+		}
+	},
+	"parameters": {
+		"customerId": {
+			"name": "customerId",
+			"in": "path",
+			"description": "ID of customer that needs to be fetched",
+			"required": true,
+			"type": "integer",
+			"format": "int32"
+		},
+		"accountId": {
+			"name": "accountId",
+			"in": "path",
+			"description": "accountId of customer",
+			"required": true,
+			"type": "integer",
+			"format": "int32"
+		},
+		"Api-Key": {
+			"name": "Api-Key",
+			"in": "header",
+			"description": " ???",
+			"type": "string"
+		},
+		"Request-ID": {
+			"name": "Request-ID",
+			"in": "header",
+			"description": "It will be used a sort of correlation id for logging and tracking purposes.",
+			"required": true,
+			"type": "string"
+		},
+		"Accept": {
+			"name": "Accept",
+			"in": "header",
+			"description": "It must be of type appliation/json.",
+			"required": true,
+			"type": "string"
+		},
+		"Api-Version": {
+			"name": "Api-Version",
+			"in": "header",
+			"description": "Version of the API's definition.",
+			"required": true,
+			"type": "string"
+		},
+		"Client-TimeStamp": {
+			"name": "Client-TimeStamp",
+			"in": "header",
+			"description": "TimeStamp in ISO8601 Format is ???.",
+			"required": true,
+			"type": "string",
+			"format": "date-time"
+		}
+	},
+	"definitions": {
+		"CustomerInfo": {
+			"properties": {
+				"customerName": {
+					"type": "string"
+				},
+				"customerSurName": {
+					"type": "string"
+				}
+			}
+		},
+		"AccountInfo": {
+			"properties": {
+				"balance": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"accountType": {
+					"type": "string"
+				},
+				"createdDate": {
+					"type": "string"
+				},
+				"modifiedDate": {
+					"type": "string"
+				},
+				"accountNumber": {
+					"type": "string"
+				},
+				"customerId": {
+					"type": "integer",
+					"format": "int32"
+				}
+			}
+		},
+		"AccountDetailsInfo": {
+			"properties": {
+				"AccountDetails": {
+					"type": "array",
+					"items": {
+						"$ref": "#/definitions/AccountInfo"
+					},
+					"minItems": 0
+				}
+			}
+		},
+		"CustomerRequestInfo": {
+			"properties": {
+				"customerId": {
+					"type": "integer",
+					"format": "int32"
+				},
+				"CreditAmount": {
+					"type": "integer",
+					"format": "int64"
+				},
+				"accountType": {
+					"type": "string"
+				}
+			}
+		}
+	}
+}
