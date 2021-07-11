@@ -3,12 +3,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
 	<groupId>be.abc.bank.accounts</groupId>
 	<artifactId>accounts-api</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
+	
 	<name>Accounts</name>
 	<description>Accounts API is used to fetch the account related operations</description>
+	
 	<properties>
 		<java.version>11</java.version>
 		<basepackage>${project.groupId}</basepackage>
@@ -31,14 +34,13 @@
 		</repository>
 	</distributionManagement>
 	
-
 	<dependencies>
-		<!-- https://mvnrepository.com/artifact/org.apache.commons/commons-lang3 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.8.1</version>
 		</dependency>
+
 		<!-- dependencies are needed for the client being generated -->
 
 		<dependency>
@@ -46,10 +48,6 @@
 			<artifactId>swagger-annotations</artifactId>
 			<version>${swagger-annotations-version}</version>
 		</dependency>
-
-		<!-- You can find the dependencies for the library configuration you chose 
-			by looking in JavaClientCodegen. Then find the corresponding dependency on 
-			Maven Central, and set the versions in the property section below -->
 
 		<!-- HTTP client: jersey-client -->
 		<dependency>
@@ -172,29 +170,6 @@
 					<generateApiDocumentation>false</generateApiDocumentation>
 				</configuration>
 			</plugin>
-
-			<plugin>
-
-				<artifactId>maven-clean-plugin</artifactId>
-				<version>3.1.0</version>
-				<configuration>
-					<filesets>
-						<fileset>
-							<directory>some/relative/path</directory>
-							<includes>
-								<include>**/*.tmp</include>
-								<include>**/*.log</include>
-							</includes>
-							<excludes>
-								<exclude>**/important.log</exclude>
-								<exclude>**/another-important.log</exclude>
-							</excludes>
-							<followSymlinks>false</followSymlinks>
-						</fileset>
-					</filesets>
-				</configuration>
-			</plugin>
 		</plugins>
 	</build>
-
 </project>
