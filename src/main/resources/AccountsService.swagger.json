@@ -5,13 +5,13 @@
 		"version": "1.0.0",
 		"title": "Account Service API"
 	},
-	"host": "be.abc.bank.accounts.service",
-	"basePath": "/accounts/v1",
+	"host": "localhost:9082",
+	"basePath": "abc/accounts/v1",
 	"schemes": [
 		"http"
 	],
 	"paths": {
-		"/customer-detail/{customerId}": {
+		"/getCustomerDetail/{customerId}": {
 			"get": {
 				"tags": [
 					"customerDetail"
@@ -24,7 +24,7 @@
 				],
 				"parameters": [
 					{
-						"$ref": "#/parameters/Api-Key"
+						"$ref": "#/parameters/Authorization"
 					},
 					{
 						"$ref": "#/parameters/Request-ID"
@@ -66,7 +66,7 @@
 				}
 			}
 		},
-		"/create-account": {
+		"/createAccount": {
 			"post": {
 				"tags": [
 					"createAccount"
@@ -81,7 +81,7 @@
 				],
 				"parameters": [
 					{
-						"$ref": "#/parameters/Api-Key"
+						"$ref": "#/parameters/Authorization"
 					},
 					{
 						"$ref": "#/parameters/Request-ID"
@@ -106,7 +106,7 @@
 					}
 				],
 				"responses": {
-					"204": {
+					"200": {
 						"description": "Customer new account created successfully"
 					},
 					"405": {
@@ -118,7 +118,7 @@
 				}
 			}
 		},
-		"/update-account/{accountId}": {
+		"/updateAccount/{accountId}": {
 			"put": {
 				"tags": [
 					"updateAccount"
@@ -133,7 +133,7 @@
 				],
 				"parameters": [
 					{
-						"$ref": "#/parameters/Api-Key"
+						"$ref": "#/parameters/Authorization"
 					},
 					{
 						"$ref": "#/parameters/Request-ID"
@@ -173,7 +173,7 @@
 				}
 			}
 		},
-		"/account-detail/{customerId}": {
+		"/getAccountDetail/{customerId}": {
 			"get": {
 				"tags": [
 					"accountDetail"
@@ -186,7 +186,7 @@
 				],
 				"parameters": [
 					{
-						"$ref": "#/parameters/Api-Key"
+						"$ref": "#/parameters/Authorization"
 					},
 					{
 						"$ref": "#/parameters/Request-ID"
@@ -241,8 +241,8 @@
 			"type": "integer",
 			"format": "int32"
 		},
-		"Api-Key": {
-			"name": "Api-Key",
+		"Authorization": {
+			"name": "Authorization",
 			"in": "header",
 			"description": " ???",
 			"type": "string"
@@ -329,7 +329,7 @@
 					"type": "integer",
 					"format": "int32"
 				},
-				"CreditAmount": {
+				"creditAmount": {
 					"type": "integer",
 					"format": "int64"
 				},
