@@ -1,6 +1,6 @@
 # Acconts-API
 
-This API acts as an interfae for account related service and it can be used by other application to make REST call with account service.
+This API acts as an interfae for account service and it can be used by other application to make REST call with account service.
 
 ### Prerequisites
 * Java 8
