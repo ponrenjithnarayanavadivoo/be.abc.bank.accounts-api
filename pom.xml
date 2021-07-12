@@ -13,7 +13,7 @@
 	<description>Accounts API is used to fetch the account related operations</description>
 	
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
 		<basepackage>${project.groupId}</basepackage>
 		<open-api-generator-version>5.0.1</open-api-generator-version>
 		<swagger-annotations-version>1.5.8</swagger-annotations-version>
